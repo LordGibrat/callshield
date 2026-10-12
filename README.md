@@ -1,31 +1,41 @@
 # CallShield
 
-CallShield is an offline Android research prototype for defending against voice-based social engineering.
+An offline Android research prototype for detecting voice-based social-engineering tactics with explainable evidence.
 
-## Research question
-
-Can an on-device, explainable detector combine caller-identity verification with conversational manipulation signals to warn a user before they disclose money, credentials, or one-time codes?
-
-## What the MVP demonstrates
+## What it demonstrates
 
 - A consent-first simulated call flow.
-- Caller-claim verification against a local trusted profile.
-- Explainable real-time risk evidence: urgency, isolation, authority impersonation, payment requests, and identity mismatch.
-- A local risk score with calibrated levels and an action recommendation.
-- No network permission and no cloud inference.
+- Local caller-identity verification against a trusted profile.
+- Inspectable signals for urgency, secrecy, authority impersonation, payment requests, and identity mismatch.
+- A local 0–100 risk score with `LOW`, `MEDIUM`, `HIGH`, and `CRITICAL` levels.
+- A plain-language recommendation for the next safe action.
+- No network permission and no cloud inference in the current prototype.
 
-## Honest scope
+The core decision boundary is implemented in [`CallRiskEngine.kt`](app/src/main/java/ai/callshield/domain/CallRiskEngine.kt). It returns the evidence behind a result instead of hiding the decision inside a black-box label.
 
-Android does not give every third-party app unrestricted access to ordinary cellular call audio. This MVP therefore uses a simulated/consented transcript input to validate the decision layer. The next research milestone is an on-device speech-to-text pipeline and a TensorFlow Lite classifier trained on a consented, annotated dataset.
+## Scope and limitations
 
-## Suggested 11-day research plan
+This is a research prototype, not a production call-blocking app. Android does not provide every third-party app unrestricted access to ordinary cellular-call audio, so the current MVP evaluates simulated or consented transcript input. A future version could add on-device speech-to-text and a classifier trained on a consented, annotated dataset.
 
-1. Build and run the UI on a physical Android device.
-2. Record 20–30 consented example scenarios: benign, phishing, impersonation, and payment pressure.
-3. Annotate tactic categories and evaluate precision, recall, and false-positive rate.
-4. Add a short report with threat model, privacy analysis, ablations, and limitations.
-5. Publish the code, demo video, evaluation table, and architecture diagram.
+## Run locally
 
-## Build
+Open the repository in Android Studio, let Gradle sync, and run the app on an emulator or Android device. The offline unit tests can be run with:
 
-Open this folder in Android Studio and let Gradle sync. Run `testDebugUnitTest` for the offline engine tests, then deploy to an Android phone or emulator.
+```bash
+./gradlew testDebugUnitTest
+```
+
+The test suite covers the risk engine and its explainable signals.
+
+## Research materials
+
+- [`research/RESEARCH.md`](research/RESEARCH.md) — evaluation plan and threat-model notes.
+- [`research/scenarios.json`](research/scenarios.json) — sample scenarios.
+- [`research/evaluate.py`](research/evaluate.py) — evaluation helper.
+
+## Roadmap
+
+1. Add consented speech-to-text input.
+2. Measure precision, recall, false positives, and calibration on annotated scenarios.
+3. Add a privacy review, threat model, and device-side performance measurements.
+4. Publish a short demo and reproducible evaluation report.
