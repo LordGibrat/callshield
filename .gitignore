@@ -1,0 +1,13 @@
+.codegraph/
+.gradle/
+.kotlin/
+app/build/
+build/
+outputs/
+work/
+.playwright-mcp/
+.ai-harness/
+.cursor/
+.mcp.json
+.idea/
+local.properties

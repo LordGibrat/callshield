@@ -1,0 +1,22 @@
+[
+  {
+    "id": "benign-01",
+    "label": "benign",
+    "text": "Hi, this is Alex. I am calling to confirm our appointment tomorrow at ten."
+  },
+  {
+    "id": "impersonation-01",
+    "label": "scam",
+    "text": "This is bank security. Your account has an urgent problem. Give me the one-time code immediately and do not tell anyone."
+  },
+  {
+    "id": "authority-01",
+    "label": "scam",
+    "text": "I am calling from the tax office. You must pay with a gift card now or police will come to your home."
+  },
+  {
+    "id": "benign-02",
+    "label": "benign",
+    "text": "Hello, I am following up about the project meeting. Could we move it to Friday?"
+  }
+]
