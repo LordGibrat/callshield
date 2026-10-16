@@ -1,6 +1,8 @@
 # CallShield
 
-An offline Android research prototype for detecting voice-based social-engineering tactics with explainable evidence.
+**An offline Android prototype that flags social-engineering signals and shows the evidence behind each risk score.**
+
+[Run locally](#run-locally) · [Research materials](#research-materials) · [Scope](#scope-and-limitations)
 
 ## What it demonstrates
 
@@ -12,6 +14,10 @@ An offline Android research prototype for detecting voice-based social-engineeri
 - No network permission and no cloud inference in the current prototype.
 
 The core decision boundary is implemented in [`CallRiskEngine.kt`](app/src/main/java/ai/callshield/domain/CallRiskEngine.kt). It returns the evidence behind a result instead of hiding the decision inside a black-box label.
+
+## Demo flow
+
+Enter a simulated or consented call transcript, review the detected tactics and identity signals, then inspect the score and suggested next action. The app evaluates local input; it does not monitor live cellular calls.
 
 ## Scope and limitations
 
